@@ -20,7 +20,7 @@ class Form extends React.Component {
 
     onSubmitForm(e) {
         e.preventDefault()
-        this.props.onSubmit(this.state.task)
+        this.props.addTask(this.state.task)
         this.setState({
             task: ""
         })

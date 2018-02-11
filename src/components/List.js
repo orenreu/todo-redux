@@ -11,33 +11,16 @@ class List extends React.Component {
 
     constructor() {
         super()
-        this.state = {
-            listItems: []
-        }
-    }
-    
-    componentWillMount() {
 
     }
-    
-    componentDidMount() {
 
-    }
-    
-    componentWillReceiveProps(nextProps) {
-
-    }
-    
-    componentWillUnmount() {
-        
-    }
 
  render(){
     return (
         <ul className="list-group">
-            {this.state.listItems.map((item, index) => {
+            {this.props.tasks.tasks.map((task, index) => {
                 return(
-                   <ListItem key={index} text={item} />
+                   <ListItem key={index} text={task.title} remove={()=>this.props.removeTask(index, task.id)}/>
                 )
             })}
         </ul>
@@ -47,7 +30,9 @@ class List extends React.Component {
 
 const ListItem = (props) => {
     return (
-        <li className="list-group-item">{props.text}</li>
+        <li className="list-group-item">{props.text}
+        <button onClick={props.remove}>X</button>
+        </li>
     )
 }
 

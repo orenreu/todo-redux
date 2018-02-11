@@ -12,38 +12,35 @@ import List from './List'
 class Main extends React.Component {
     constructor() {
         super()
-
-        this.state = {
-            tasks: []
-        }
-
-        this.onSubmit = this.onSubmit.bind(this)
     }
 
-    onSubmit(task) {
-        if(task === "") return
-        var tasks = this.state.tasks
-        tasks.push(task)
-        this.setState({
-            tasks
-        })
+    componentWillMount() {
+        this.props.getTasks()
     }
+
 
     render(){
         return (
             <div className="app-div">
                 <div className="container">
-                    <nav className="navbar navbar-light bg-light">
+                    <nav className={this.props.tasks.isGreen ? "navbar navbar-light bg-light green" : "navbar navbar-light bg-light"}>
                         <a className="navbar-brand" href="/">ToDo's</a>
+                        {this.props.tasks.sayHi ? <p>Hi JFroggers</p>: null}
                     </nav>
                     <div className="row">
+                        <button onClick={() => this.props.sayHi(true)}>Say Hi</button>
+                    </div>
+                    <div className="row">
+                        <button onClick={() => this.props.goGreen(true)}>Go Green</button>
+                    </div>
+                    <div className="row">
                         <div className="col-8 mx-auto text-center">
-                            <Form onSubmit={this.onSubmit}/>
+                            <Form {...this.props}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-8 mx-auto">
-                            <List items={this.state.tasks}/>
+                            <List {...this.props}/>
                         </div>
                     </div>
                 </div>

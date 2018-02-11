@@ -9,3 +9,19 @@
 .form-div {
     padding-top: 120px;
 }
+
+.navbar.green {
+    background-color: green !important;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-group-item button{
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
